@@ -38,6 +38,19 @@
       <artifactId>jflex</artifactId>
       <version>1.4.3</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
+      <version>1.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>de.jflex</groupId>
+      <artifactId>jflex-maven-plugin</artifactId>
+      <version>1.9.1</version>
+    </dependency>
   </dependencies>
 
   <build>
