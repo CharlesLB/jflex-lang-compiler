@@ -1,8 +1,0 @@
-# IDE
-/.idea
-
-# Build
-target/
-
-# Generated Files
-Lexer.java

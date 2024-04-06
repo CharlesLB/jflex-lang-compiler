@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compilar-e-executar-lexer",
+      "type": "shell",
+      "command": "java",
+      "args": ["-jar", "./jflex-full-1.8.2.jar", "./lang.flex"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "compilar-classe-java",
+      "type": "shell",
+      "command": "javac",
+      "args": ["Lexer.java"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "executar-lexer",
+      "type": "shell",
+      "command": "java",
+      "args": ["Lexer", "sample1.txt"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent"
+      }
+    }
+  ]
+}
