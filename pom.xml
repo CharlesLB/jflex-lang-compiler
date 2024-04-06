@@ -51,8 +51,8 @@
 
     <dependency>
       <groupId>de.jflex</groupId>
-      <artifactId>jflex-maven-plugin</artifactId>
-      <version>1.9.1</version>
+      <artifactId>jflex</artifactId>
+      <version>1.7.0</version>
     </dependency>
   </dependencies>
 

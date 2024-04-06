@@ -1,5 +1,5 @@
 
-package jflex;
+package target;
 
 %%
 

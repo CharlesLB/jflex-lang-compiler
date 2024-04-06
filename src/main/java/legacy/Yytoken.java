@@ -1,4 +1,4 @@
-package lib;
+package legacy;
 
 class Yytoken {
   public int m_index;

@@ -1,4 +1,4 @@
-package lib;
+package legacy;
 
 import java.util.Arrays;
 import java.util.Collections;
