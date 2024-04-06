@@ -1,4 +1,4 @@
-package com.charleslb.lib;
+package lib;
 
 class Yytoken {
   public int m_index;

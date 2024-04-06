@@ -1,4 +1,3 @@
-package com.charleslb;
 
 import static org.junit.Assert.assertTrue;
 

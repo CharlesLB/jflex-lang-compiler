@@ -1,4 +1,3 @@
-package com.charleslb;
 
 public class App {
     public static void main(String[] args) {
