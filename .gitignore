@@ -2,3 +2,4 @@
 build
 Lexer.java
 *.java~
+*.class

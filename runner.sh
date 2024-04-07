@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# TODO: UPDATE IT
+compile_jflex_lexer() {
+    java -jar ./lib/jflex-full-1.8.2.jar ./src/Lexer/lang.flex
+}
 
+compile_lexer_java() {
+    javac ./src/Lexer/Tester.java -d ./build
+}
 
-# Compilação do arquivo .jflex para gerar o arquivo .java
-java -jar ./jflex-full-1.8.2.jar ./lang.flex
+test_lexer() {
+    java -classpath ./build Lexer ./samples/sintantic/true/data.lan
+}
 
-# Compilação da classe Java
-javac Lexer.java
+compile_jflex_lexer
+compile_lexer_java
+test_lexer
 
-# Utilização do Lexer para analisar o sample1.txt
-java Lexer sample1.txt
+exit 0
