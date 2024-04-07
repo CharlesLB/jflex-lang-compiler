@@ -35,6 +35,16 @@
       }
     },
     {
+      "label": "compile-lexer-main",
+      "type": "shell",
+      "command": "javac",
+      "args": ["./src/App.java", "-d", "./build"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
       "label": "test-lexer",
       "type": "shell",
       "command": "java",

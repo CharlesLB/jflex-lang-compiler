@@ -1,3 +1,5 @@
+package src.Lexer;
+
 public class Token {
   public TOKEN_TYPE t;
   public Object info;

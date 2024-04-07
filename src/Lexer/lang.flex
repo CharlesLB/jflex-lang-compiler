@@ -1,30 +1,35 @@
+package src.Lexer;
 
-  /*  Esta seção é copiada antes da declaração da classe do analisador léxico gerado.
-  *  É nesta seção que se deve incluir imports e declaração de pacotes.
-  *  Neste exemplo não temos nada a incluir nesta seção.
-  */
 
 %%
-
-  /* Nesta seção são definidas ERs e configurações da ferramenta */
 
 %unicode
 %line
 %column
 %class Lexer
+%function nextToken
 %type Token
 
 %{
+  private int ntk;
+
+  public int readedTokens(){
+    return ntk;
+  }
+
   private Token symbol(TOKEN_TYPE t) {
-      return new Token(t,yytext());
+    ntk++;
+    return new Token(t,yytext());
   }
 
   private Token symbol(TOKEN_TYPE t, Object value) {
-      return new Token(t, value);
+    ntk++;
+    return new Token(t, value);
   }
 %}
 
 %init{
+  ntk = 0;
 %init}
 
 ALPHA=[A-Za-z]

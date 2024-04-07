@@ -1,3 +1,5 @@
+package src.Lexer;
+
 public enum TOKEN_TYPE {
   /* RESERVED_WORDS */
   IF,
