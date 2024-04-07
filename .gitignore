@@ -1,3 +1,4 @@
+# Build
 *.class
-*.java
 *.java~
+Lexer.java

@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "run-all-lexer",
+      "label": "compile",
       "dependsOrder": "sequence",
       "dependsOn": ["compile-lexer", "compile-lexer-class", "exec-lexer"],
       "group": {
@@ -21,7 +21,7 @@
       "args": ["-jar", "./lib/jflex-full-1.8.2.jar", "./src/Lexer/lang.flex"],
       "problemMatcher": [],
       "presentation": {
-        "reveal": "silent"
+        "reveal": "never"
       }
     },
     {
@@ -31,7 +31,7 @@
       "args": ["Lexer.java"],
       "problemMatcher": [],
       "presentation": {
-        "reveal": "silent"
+        "reveal": "never"
       }
     },
     {
@@ -41,7 +41,7 @@
       "args": ["Lexer", "./samples/sintantic/true/data.lan"],
       "problemMatcher": [],
       "presentation": {
-        "reveal": "silent"
+        "reveal": "never"
       }
     }
   ]
