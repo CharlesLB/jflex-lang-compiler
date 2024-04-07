@@ -13,17 +13,34 @@
 %column
 %class Lexer
 
-// %function nextToken : nome da funções
-// %type Token : tipo do Token retornado
-%standalone // somente léxico, sem sintático
+%standalone
 
 
 %{
-  private int ntks;
- 
-  private void incTks() { ++ntks; }
-  private int numTokens() { return ntks; }
-  
+    public class Token {
+      private int type;
+      private String value;
+
+      private valuableTokens = [
+        "VAR",
+        "NUM",
+        "EQ",
+        "SEMI",
+        "TIMES",
+        "PLUS"
+      ]
+
+      public Token(int type, String value) {
+        this.type = type;
+        this.value = value;
+      }
+
+      public print() {
+
+
+        System.out.println(type + " Value: " + value);
+      }
+    }
 %}
 
 %init{

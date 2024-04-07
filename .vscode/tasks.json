@@ -22,7 +22,7 @@
       "label": "compilar-e-executar-lexer",
       "type": "shell",
       "command": "java",
-      "args": ["-jar", "./jflex-full-1.8.2.jar", "./lang.flex"],
+      "args": ["-jar", "./lib/jflex-full-1.8.2.jar", "./src/lang.flex"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent"
@@ -42,7 +42,7 @@
       "label": "executar-lexer",
       "type": "shell",
       "command": "java",
-      "args": ["Lexer", "sample1.txt"],
+      "args": ["Lexer", "./samples/sample1.txt"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent"
