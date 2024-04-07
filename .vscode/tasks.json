@@ -4,7 +4,7 @@
     {
       "label": "compile",
       "dependsOrder": "sequence",
-      "dependsOn": ["compile-lexer", "compile-lexer-class", "exec-lexer"],
+      "dependsOn": ["compile-jflex-lexer", "compile-lexer-java"],
       "group": {
         "kind": "build",
         "isDefault": true
