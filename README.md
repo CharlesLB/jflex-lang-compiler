@@ -13,3 +13,9 @@ Para usar o Lexer para analisar o sample1.txt
 ```
 java Lexer sample1.txt
 ```
+
+## TODO
+
+### Bugs
+
+[ ] Aceitar -- como comentário e -- como início de um comentário
