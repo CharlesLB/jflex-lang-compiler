@@ -1,4 +1,5 @@
-// TODO: Colocar a lista de samples aqui e não faço a menor ideia de como vamos buildar o lexer daqui
+// TODO: Colocar a lista de samples aqui | Ver Teste.java do professor
+// TODO: O output deve ser feito na pasta ./output/lexers com a estrutura do arquivo de entrada
 
 public class App {
   public static void main(String[] args) throws Exception {

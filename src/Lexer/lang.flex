@@ -12,9 +12,7 @@
 %line
 %column
 %class Lexer
-
-%standalone
-
+%type Token
 
 %{
   private Token symbol(TOKEN_TYPE t) {

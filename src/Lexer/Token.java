@@ -1,8 +1,8 @@
 public class Token {
   public TOKEN_TYPE t;
-  public String value;
+  public Object info;
 
-  public Token(TOKEN_TYPE t, String o) {
+  public Token(TOKEN_TYPE t, Object o) {
     this.t = t;
     info = o;
   }

@@ -15,7 +15,7 @@
       }
     },
     {
-      "label": "compile-lexer",
+      "label": "compile-jflex-lexer",
       "type": "shell",
       "command": "java",
       "args": ["-jar", "./lib/jflex-full-1.8.2.jar", "./src/Lexer/lang.flex"],
@@ -25,10 +25,10 @@
       }
     },
     {
-      "label": "compile-lexer-class",
+      "label": "compile-lexer-java",
       "type": "shell",
       "command": "javac",
-      "args": ["Lexer.java"],
+      "args": ["./src/Lexer/*.java", "-d", "./build"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "never"
@@ -38,7 +38,7 @@
       "label": "test-lexer",
       "type": "shell",
       "command": "java",
-      "args": ["Lexer", "./samples/sintantic/true/data.lan"],
+      "args": ["./build/Lexer", "./samples/sintantic/true/data.lan"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "never"

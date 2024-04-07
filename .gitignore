@@ -1,2 +1,4 @@
 # Build
 build
+Lexer.java
+*.java~
