@@ -2,13 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "compilar-e-executar-tudo",
+      "label": "run-all-lexer",
       "dependsOrder": "sequence",
-      "dependsOn": [
-        "compilar-e-executar-lexer",
-        "compilar-classe-java",
-        "executar-lexer"
-      ],
+      "dependsOn": ["compile-lexer", "compile-lexer-class", "exec-lexer"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -19,17 +15,17 @@
       }
     },
     {
-      "label": "compilar-e-executar-lexer",
+      "label": "compile-lexer",
       "type": "shell",
       "command": "java",
-      "args": ["-jar", "./lib/jflex-full-1.8.2.jar", "./src/lang.flex"],
+      "args": ["-jar", "./lib/jflex-full-1.8.2.jar", "./src/Lexer/lang.flex"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent"
       }
     },
     {
-      "label": "compilar-classe-java",
+      "label": "compile-lexer-class",
       "type": "shell",
       "command": "javac",
       "args": ["Lexer.java"],
@@ -39,10 +35,10 @@
       }
     },
     {
-      "label": "executar-lexer",
+      "label": "test-lexer",
       "type": "shell",
       "command": "java",
-      "args": ["Lexer", "./samples/sample1.txt"],
+      "args": ["Lexer", "./samples/sintantic/true/data.lan"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent"
