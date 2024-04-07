@@ -30,28 +30,54 @@
   ntks = 0; // copiado para o construtor
 %init}
 
-/* Agora vamos definir algumas macros */
-FimDeLinha  = \r | \n | \r\n
-Brancos     = {FimDeLinha} | [ \t\f]
-numero      = [:digit:] [:digit:]*
-identificador = [:lowercase:]
-LineComment = "//" (.)* {FimDeLinha}
+ALPHA=[A-Za-z]
+NUMBER= [:digit:] [:digit:]*  
+DIGIT=[0-9]
+NONNEWLINE_WHITE_SPACE_CHAR=[\ \t\b\012]
+NEWLINE=\r|\n|\r\n
+WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
+STRING_TEXT=(\\\"|[^\n\r\"\\]|\\{WHITE_SPACE_CHAR}+\\)*
+COMMENT_TEXT=([^*/\n]|[^*\n]"/"[^*\n]|[^/\n]"*"[^/\n]|"*"[^/\n]|"/"[^*\n])+
+IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 
 %state COMMENT
 
 %%
 
 <YYINITIAL>{
-    {identificador} { System.out.println("Token VAR: " + yytext());  incTks(); }
-    {numero}        { System.out.println("Token NUM: " + yytext());  incTks(); }
+    {IDENT} { System.out.println("Token VAR: " + yytext());  incTks(); }
+    {NUMBER}        { System.out.println("Token NUM: " + yytext());  incTks(); }
     "="             { System.out.println("Token EQ");  incTks();               }
     ";"             { System.out.println("Token SEMI");  incTks();             }
     "*"             { System.out.println("Token TIMES");  incTks();            }
     "+"             { System.out.println("Token PLUS");  incTks();             }
     "/*"            { yybegin(COMMENT);                                        }
-    {Brancos}       { /* Não faz nada - Skip */                                }
-    {LineComment}   {                                                          }
-}
+    "," { yytext(); }
+    ":" { yytext(); }
+    ";" { yytext(); }
+    "(" { yytext(); }
+    ")" { yytext(); }
+    "[" { yytext(); }
+    "]" { yytext(); }
+    "{" { yytext(); }
+    "}" { yytext(); }
+    "." { yytext(); }
+    "+" { yytext(); }
+    "-" { yytext(); }
+    "*" { yytext(); }
+    "/" { yytext(); }
+    "=" { yytext(); }
+    "<>" { yytext(); }
+    "<"  { yytext(); }
+    "<=" { yytext(); }
+    ">"  { yytext(); }
+    ">=" { yytext(); }
+    "&"  { yytext(); }
+    "|"  { yytext(); }
+    ":=" { yytext(); }
+    "/*" { yybegin(COMMENT); comment_count++; }}
+    {WHITE_SPACE_CHAR}       { }
+
 
 <COMMENT>{
    "*/"     { yybegin(YYINITIAL); } 
