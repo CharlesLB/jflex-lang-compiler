@@ -41,6 +41,8 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 
 %state COMMENT
 %state LINE_COMMENT
+%state STRING_SINGLE_QUOTE
+%state STRING_DOUBLE_QUOTE
 
 %%
 
@@ -76,8 +78,8 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
-    "'" { return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
-    "\"" { return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
+    "'" { yybegin(STRING_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+    "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
     "[" { return symbol(TOKEN_TYPE.LEFT_BRACKET); }
@@ -101,6 +103,16 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 
 
     {WHITE_SPACE_CHAR} { }
+}
+
+<STRING_SINGLE_QUOTE> {
+    [^']+ { return symbol(TOKEN_TYPE.ID); }
+    "'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+}
+
+<STRING_DOUBLE_QUOTE> {
+    [^\"]+ { return symbol(TOKEN_TYPE.ID); }
+    "\"" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
 }
 
 <COMMENT>{
