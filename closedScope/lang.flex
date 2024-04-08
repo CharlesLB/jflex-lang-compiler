@@ -96,6 +96,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     ">" { return symbol(TOKEN_TYPE.GREATER_THAN); }
     "&&" { return symbol(TOKEN_TYPE.DOUBLE_AMPERSAND); }
     "&" { return symbol(TOKEN_TYPE.AMPERSAND); }
+    "!" { return symbol(TOKEN_TYPE.EXCLAMATION_MARK); }
     "||" { return symbol(TOKEN_TYPE.DOUBLE_PIPE); }
     "|" { return symbol(TOKEN_TYPE.PIPE); }
     ":=" { return symbol(TOKEN_TYPE.ASSIGN); }
