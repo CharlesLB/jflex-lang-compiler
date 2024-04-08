@@ -36,7 +36,6 @@ NUMBER= [:digit:] [:digit:]*
 DIGIT=[0-9]
 NEWLINE=\r|\n|\r\n
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
-STRING_TEXT=(\\\"|[^\n\r\"\\]|\\{WHITE_SPACE_CHAR}+\\)*
 IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 
 %state COMMENT
@@ -75,6 +74,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     ";" { return symbol(TOKEN_TYPE.SEMI); }
     "*" { return symbol(TOKEN_TYPE.TIMES); }
     "+" { return symbol(TOKEN_TYPE.PLUS); }
+    "%" { return symbol(TOKEN_TYPE.MOD); }
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }

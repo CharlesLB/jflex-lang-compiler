@@ -28,6 +28,7 @@ public enum TOKEN_TYPE {
   SEMI,
   TIMES,
   PLUS,
+  MOD,
   COMMA,
   DOUBLE_COLON,
   COLON,
