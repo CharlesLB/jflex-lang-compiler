@@ -107,12 +107,12 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 }
 
 <STRING_SINGLE_QUOTE> {
-    [^']+ { return symbol(TOKEN_TYPE.ID); }
+    [^']+ { return symbol(TOKEN_TYPE.STRING); }
     "'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
 }
 
 <STRING_DOUBLE_QUOTE> {
-    [^\"]+ { return symbol(TOKEN_TYPE.ID); }
+    [^\"]+ { return symbol(TOKEN_TYPE.STRING); }
     "\"" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
 }
 
