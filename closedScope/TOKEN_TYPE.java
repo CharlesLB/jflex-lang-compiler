@@ -54,6 +54,7 @@ public enum TOKEN_TYPE {
   DOUBLE_PIPE,
   PIPE,
   ASSIGN,
+  STRING_VALUE,
 
   /* OPERATORS */
   PLUS_PLUS,
