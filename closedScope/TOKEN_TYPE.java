@@ -17,6 +17,9 @@ public enum TOKEN_TYPE {
   SWITCH,
   CASE,
   DEFAULT,
+  NULL,
+  TRUE,
+  FALSE,
   PRINT,
   SCAN,
 
@@ -25,6 +28,7 @@ public enum TOKEN_TYPE {
   NUMBER,
   NEWLINE,
   EQ,
+  NOT_EQ,
   SEMI,
   TIMES,
   PLUS,
@@ -53,7 +57,6 @@ public enum TOKEN_TYPE {
   EXCLAMATION_MARK,
   DOUBLE_PIPE,
   PIPE,
-  ASSIGN,
   STRING_VALUE,
 
   /* OPERATORS */

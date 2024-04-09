@@ -54,7 +54,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "return" { return symbol(TOKEN_TYPE.RETURN); }
     "break" { return symbol(TOKEN_TYPE.BREAK); }
     "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
-    "int" { return symbol(TOKEN_TYPE.INT); }
+    "Int" { return symbol(TOKEN_TYPE.INT); }
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
     "string" { return symbol(TOKEN_TYPE.STRING); }
@@ -63,6 +63,9 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "switch" { return symbol(TOKEN_TYPE.SWITCH); }
     "case" { return symbol(TOKEN_TYPE.CASE); }
     "default" { return symbol(TOKEN_TYPE.DEFAULT); }
+    "null" { return symbol(TOKEN_TYPE.NULL); }
+    "true" { return symbol(TOKEN_TYPE.TRUE); }
+    "false" { return symbol(TOKEN_TYPE.FALSE); }
     "print" { return symbol(TOKEN_TYPE.PRINT); }
     "scan" { return symbol(TOKEN_TYPE.SCAN); }    
 
@@ -71,6 +74,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "--" { yybegin(LINE_COMMENT); }
     "/*" { yybegin(COMMENT); }
     "=" { return symbol(TOKEN_TYPE.EQ); }
+    "!=" { return symbol(TOKEN_TYPE.NOT_EQ); }
     ";" { return symbol(TOKEN_TYPE.SEMI); }
     "*" { return symbol(TOKEN_TYPE.TIMES); }
     "+" { return symbol(TOKEN_TYPE.PLUS); }
@@ -99,9 +103,6 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "!" { return symbol(TOKEN_TYPE.EXCLAMATION_MARK); }
     "||" { return symbol(TOKEN_TYPE.DOUBLE_PIPE); }
     "|" { return symbol(TOKEN_TYPE.PIPE); }
-    ":=" { return symbol(TOKEN_TYPE.ASSIGN); }
-
-
 
     {WHITE_SPACE_CHAR} { }
 }
