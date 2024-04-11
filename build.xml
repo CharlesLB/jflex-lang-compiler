@@ -1,0 +1,47 @@
+<project name="lang_compiler" default="run">
+
+    <!-- Definição de propriedades -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="jflex.jar" value="${lib.dir}/jflex-full-1.8.2.jar"/>
+    <property name="samples.dir" value="samples"/>
+
+    <!-- Alvo para preparar o diretório de destino -->
+    <target name="prepare">
+        <echo>Criando diretório de destino...</echo>
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <!-- Alvo para gerar o analisador léxico com JFlex -->
+    <target name="jflex" depends="prepare">
+        <echo>Gerando analisador léxico com JFlex...</echo>
+        <java jar="${jflex.jar}" fork="true">
+            <arg line="-d ${src.dir}/Lexer"/>
+            <arg value="${src.dir}/Lexer/lang.flex"/>
+        </java>
+    </target>
+
+    <!-- Alvo para compilar os arquivos Java -->
+    <target name="compile" depends="prepare, jflex">
+        <echo>Compilando arquivos Java...</echo>
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <include name="Lexer/Lexer.java"/>
+            <include name="Lexer/Token.java"/>
+            <include name="Lexer/TOKEN_TYPE.java"/>
+            <include name="App.java"/>
+        </javac>
+    </target>
+
+    <!-- Alvo para executar a aplicação -->
+    <target name="run" depends="compile">
+        <echo>Executando a aplicação Java...</echo>
+        <java fork="true" classname="App">
+            <classpath>
+                <pathelement location="${build.dir}"/>
+            </classpath>
+            <arg value="${samples.dir}/data.lan"/>
+        </java>
+    </target>
+
+</project>

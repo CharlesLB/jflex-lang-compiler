@@ -36,11 +36,12 @@ NUMBER= [:digit:] [:digit:]*
 DIGIT=[0-9]
 NEWLINE=\r|\n|\r\n
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
-STRING_TEXT=(\\\"|[^\n\r\"\\]|\\{WHITE_SPACE_CHAR}+\\)*
 IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
 
 %state COMMENT
 %state LINE_COMMENT
+%state STRING_SINGLE_QUOTE
+%state STRING_DOUBLE_QUOTE
 
 %%
 
@@ -53,7 +54,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "return" { return symbol(TOKEN_TYPE.RETURN); }
     "break" { return symbol(TOKEN_TYPE.BREAK); }
     "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
-    "int" { return symbol(TOKEN_TYPE.INT); }
+    "Int" { return symbol(TOKEN_TYPE.INT); }
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
     "string" { return symbol(TOKEN_TYPE.STRING); }
@@ -62,6 +63,9 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "switch" { return symbol(TOKEN_TYPE.SWITCH); }
     "case" { return symbol(TOKEN_TYPE.CASE); }
     "default" { return symbol(TOKEN_TYPE.DEFAULT); }
+    "null" { return symbol(TOKEN_TYPE.NULL); }
+    "true" { return symbol(TOKEN_TYPE.TRUE); }
+    "false" { return symbol(TOKEN_TYPE.FALSE); }
     "print" { return symbol(TOKEN_TYPE.PRINT); }
     "scan" { return symbol(TOKEN_TYPE.SCAN); }    
 
@@ -70,12 +74,16 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "--" { yybegin(LINE_COMMENT); }
     "/*" { yybegin(COMMENT); }
     "=" { return symbol(TOKEN_TYPE.EQ); }
+    "!=" { return symbol(TOKEN_TYPE.NOT_EQ); }
     ";" { return symbol(TOKEN_TYPE.SEMI); }
     "*" { return symbol(TOKEN_TYPE.TIMES); }
     "+" { return symbol(TOKEN_TYPE.PLUS); }
+    "%" { return symbol(TOKEN_TYPE.MOD); }
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
+    "'" { yybegin(STRING_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+    "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
     "[" { return symbol(TOKEN_TYPE.LEFT_BRACKET); }
@@ -92,13 +100,21 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     ">" { return symbol(TOKEN_TYPE.GREATER_THAN); }
     "&&" { return symbol(TOKEN_TYPE.DOUBLE_AMPERSAND); }
     "&" { return symbol(TOKEN_TYPE.AMPERSAND); }
+    "!" { return symbol(TOKEN_TYPE.EXCLAMATION_MARK); }
     "||" { return symbol(TOKEN_TYPE.DOUBLE_PIPE); }
     "|" { return symbol(TOKEN_TYPE.PIPE); }
-    ":=" { return symbol(TOKEN_TYPE.ASSIGN); }
-
-
 
     {WHITE_SPACE_CHAR} { }
+}
+
+<STRING_SINGLE_QUOTE> {
+    [^']+ { return symbol(TOKEN_TYPE.STRING); }
+    "'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+}
+
+<STRING_DOUBLE_QUOTE> {
+    [^\"]+ { return symbol(TOKEN_TYPE.STRING); }
+    "\"" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
 }
 
 <COMMENT>{
