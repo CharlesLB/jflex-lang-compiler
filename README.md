@@ -2,16 +2,14 @@
 
 ## Para compilar
 
-VÁ PARA O /cloedScope
+TODO: colocar um comando bonito aqui
 
 ## TODO
 
+[ ] Colocar os comandos ali em cima
+
 ### Bugs
 
-[ ] Aceitar -- como comentário e -- como subtração
+[X] Aceitar -- como comentário e -- como subtração (Não tem isso no exemplo do professor)
 
-[ ] Ele está reclamando que o \ não é um caracter válido. Assim como um emoji, §, ° ¨¬ª também não é, mas eles devem ser válidos para string.
-
-    Seu objetivo é resolver isso.
-
-    Lembrando que dentro de aspas simple é só um char e dentro de aspas duplas é uma string.
+[X] Ele está reclamando que o \ não é um caracter válido. Assim como um emoji, §, ° ¨¬ª também não é, mas eles devem ser válidos para string.(Resolvido com excelência)
