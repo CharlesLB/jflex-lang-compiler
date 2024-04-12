@@ -13,6 +13,7 @@ public enum TOKEN_TYPE {
   BREAK,
   CONTINUE,
   INT,
+  FLOAT,
   NEW,
   VOID,
   STRING,
@@ -28,9 +29,13 @@ public enum TOKEN_TYPE {
   SCAN,
 
   /* GENERAL */
+  CHAR,
   ID,
-  NUMBER,
+  TYPE,
+  INT_VALUE,
+  FLOAT_VALUE,
   NEWLINE,
+  ASSIGNMENT,
   EQ,
   NOT_EQ,
   SEMI,
