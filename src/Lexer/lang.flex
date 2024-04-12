@@ -48,8 +48,7 @@ NEWLINE=\r|\n|\r\n
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 IDENT_UPPERCASE = {ALPHA_UPPERCASE}({ALPHA}|:digit:|_)*
 IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
-INDET_CHAR = \' {ALPHA} \'
-INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
+
 
 %state COMMENT
 %state LINE_COMMENT
@@ -99,8 +98,7 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
-    {INDET_CHAR} { return symbol(TOKEN_TYPE.CHAR, yytext()); }
-    {INDET_STRING} { return symbol(TOKEN_TYPE.STRING, yytext()); }
+    "'" { yybegin(STRING_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
     "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
@@ -123,6 +121,12 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     "|" { return symbol(TOKEN_TYPE.PIPE); }
 
     {WHITE_SPACE_CHAR} { }
+}
+
+<STRING_SINGLE_QUOTE> {
+    {ALPHA} { return symbol(TOKEN_TYPE.CHAR); }
+    {ALPHA}({ALPHA}|:digit:|_)* { return symbol(TOKEN_TYPE.STRING); }
+    "\'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
 }
 
 <STRING_DOUBLE_QUOTE> {
