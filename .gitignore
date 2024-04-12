@@ -3,3 +3,6 @@ build
 Lexer.java
 *.java~
 *.class
+
+# IDE
+.idea/
