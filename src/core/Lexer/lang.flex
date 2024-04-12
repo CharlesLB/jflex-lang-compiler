@@ -38,12 +38,18 @@ import core.Lexer.Token;
   ntk = 0;
 %init}
 
-ALPHA=[A-Za-z]
-NUMBER= [:digit:] [:digit:]*  
-DIGIT=[0-9]
+ALPHA = [A-Za-z]
+ALPHA_UPPERCASE=[A-Z]
+ALPHA_LOWERCASE=[a-z]
+INT_VALUE= [:digit:] [:digit:]*  
+FLOAT_VALUE= [-+]?([:digit:]+ \. [:digit:]*)
+
 NEWLINE=\r|\n|\r\n
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
-IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
+IDENT_UPPERCASE = {ALPHA_UPPERCASE}({ALPHA}|:digit:|_)*
+IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
+INDET_CHAR = \' {ALPHA} \'
+INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
 
 %state COMMENT
 %state LINE_COMMENT
@@ -62,6 +68,7 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "break" { return symbol(TOKEN_TYPE.BREAK); }
     "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
     "Int" { return symbol(TOKEN_TYPE.INT); }
+    "Float" { return symbol(TOKEN_TYPE.FLOAT); }
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
     "string" { return symbol(TOKEN_TYPE.STRING); }
@@ -76,11 +83,14 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "print" { return symbol(TOKEN_TYPE.PRINT); }
     "scan" { return symbol(TOKEN_TYPE.SCAN); }    
 
-    {IDENT} { return symbol(TOKEN_TYPE.ID, yytext()); }
-    {NUMBER} { return symbol(TOKEN_TYPE.NUMBER, yytext()); }
+    {IDENT_LOWERCASE} { return symbol(TOKEN_TYPE.ID, yytext()); }
+    {IDENT_UPPERCASE} { return symbol(TOKEN_TYPE.TYPE, yytext()); }
+    {INT_VALUE} { return symbol(TOKEN_TYPE.INT_VALUE, yytext()); }
+    {FLOAT_VALUE} { return symbol(TOKEN_TYPE.FLOAT_VALUE, yytext()); }
     "--" { yybegin(LINE_COMMENT); }
     "/*" { yybegin(COMMENT); }
-    "=" { return symbol(TOKEN_TYPE.EQ); }
+    "=" { return symbol(TOKEN_TYPE.ASSIGNMENT); }
+    "==" { return symbol(TOKEN_TYPE.EQ); }
     "!=" { return symbol(TOKEN_TYPE.NOT_EQ); }
     ";" { return symbol(TOKEN_TYPE.SEMI); }
     "*" { return symbol(TOKEN_TYPE.TIMES); }
@@ -89,7 +99,8 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
-    "'" { yybegin(STRING_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+    {INDET_CHAR} { return symbol(TOKEN_TYPE.CHAR, yytext()); }
+    {INDET_STRING} { return symbol(TOKEN_TYPE.STRING, yytext()); }
     "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
@@ -112,11 +123,6 @@ IDENT = {ALPHA}({ALPHA}|{DIGIT}|_)*
     "|" { return symbol(TOKEN_TYPE.PIPE); }
 
     {WHITE_SPACE_CHAR} { }
-}
-
-<STRING_SINGLE_QUOTE> {
-    [^']+ { return symbol(TOKEN_TYPE.STRING); }
-    "'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
 }
 
 <STRING_DOUBLE_QUOTE> {
