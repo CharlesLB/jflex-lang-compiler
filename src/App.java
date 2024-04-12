@@ -5,9 +5,8 @@ import java.io.FileReader;
 import java.io.File;
 import java.util.Scanner;
 
-import src.lexer.TOKEN_TYPE;
-import src.lexer.Token;
-import src.lexer.Lexer;
+import core.Lexer.Token;
+import core.Lexer.TOKEN_TYPE;
 
 public class App {
   private static String selectFolder(File[] folders) {
@@ -48,7 +47,7 @@ public class App {
     }
 
     // Exibir um menu com os arquivos disponíveis
-    System.out.println("Selecione um arquivo:");
+    System.out.println("Selecione um arquivo: (/samples/sintatic/)");
     for (int i = 0; i < files.length; i++) {
       System.out.println((i + 1) + ". " + files[i].getName());
     }
@@ -68,6 +67,7 @@ public class App {
 
     Lexer lx = new Lexer(new FileReader(selectedFile));
     Token t = lx.nextToken();
+
     while (t != null) {
       System.out.println(t.toString());
       t = lx.nextToken();
