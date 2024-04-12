@@ -87,7 +87,7 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
     {INT_VALUE} { return symbol(TOKEN_TYPE.INT_VALUE, yytext()); }
     {FLOAT_VALUE} { return symbol(TOKEN_TYPE.FLOAT_VALUE, yytext()); }
     "--" { yybegin(LINE_COMMENT); }
-    "/*" { yybegin(COMMENT); }
+    "{-" { yybegin(COMMENT); }
     "=" { return symbol(TOKEN_TYPE.ASSIGNMENT); }
     "==" { return symbol(TOKEN_TYPE.EQ); }
     "!=" { return symbol(TOKEN_TYPE.NOT_EQ); }
@@ -135,8 +135,8 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
 }
 
 <COMMENT>{
-   "*/"     { yybegin(YYINITIAL); } 
-   [^"*/"]  {                     }
+   "-}"     { yybegin(YYINITIAL); } 
+   [^"-}"]  {                     }
 }
 
 <LINE_COMMENT>{
