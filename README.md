@@ -5,9 +5,9 @@
 
 ## Para compilar utilizando o SHELL
 
-java -jar .\lib\jflex-full-1.8.2.jar .\src\Lexer\lang.flex
+java -jar ./lib/jflex-full-1.8.2.jar ./src/lexer/lang.flex
 
-javac -d out src\lexer\Lexer.java src\lexer\Token.java src\lexer\TOKEN_TYPE.java src\App.java ; java -cp out App
+javac -d out src/lexer/Lexer.java src/lexer/Token.java src/lexer/TOKEN_TYPE.java src/App.java ; java -cp out App
 
 ## TODO
 
