@@ -1,3 +1,4 @@
+package src.lexer;
 
 public enum TOKEN_TYPE {
   /* RESERVED_WORDS */

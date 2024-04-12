@@ -7,6 +7,10 @@ import java.io.FileReader;
 import java.io.File;
 import java.util.Scanner;
 
+import src.lexer.TOKEN_TYPE;
+import src.lexer.Token;
+import src.lexer.Lexer;
+
 public class App {
   public static void main(String[] args) throws Exception {
     String directoryPath = "samples/sintatic/false";

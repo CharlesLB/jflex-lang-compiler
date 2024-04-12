@@ -1,3 +1,7 @@
+package src.lexer;
+
+import src.lexer.TOKEN_TYPE;
+
 public class Token {
   public TOKEN_TYPE t;
   public Object info;

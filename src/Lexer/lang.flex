@@ -1,10 +1,14 @@
+package src.lexer;
 
+import src.lexer.TOKEN_TYPE;
+import src.lexer.Token;
 
 %%
 
 %unicode
 %line
 %column
+%public
 %class Lexer
 %function nextToken
 %type Token
