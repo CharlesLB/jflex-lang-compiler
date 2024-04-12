@@ -12,7 +12,7 @@ import core.Lexer.Token;
 %line
 %column
 %public
-%class Lexer
+%class LexerProcessor
 %function nextToken
 %type Token
 

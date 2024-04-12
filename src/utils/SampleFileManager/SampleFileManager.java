@@ -10,8 +10,8 @@ public class SampleFileManager {
   static String sampleFolder = "samples/sintatic/";
 
   public static File getSampleFile() throws Exception {
-      File[] files = getFolders();
-      return selectFile(files);
+    File[] files = getFolders();
+    return selectFile(files);
   }
 
   private static File[] getFolders() throws Exception {
@@ -53,7 +53,7 @@ public class SampleFileManager {
     return selectedFolder.getPath();
   }
 
-  private static File selectFile(File[] files)  {
+  private static File selectFile(File[] files) {
     System.out.println("Selecione um arquivo: (/samples/sintatic/)");
 
     for (int i = 0; i < files.length; i++) {
