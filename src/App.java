@@ -1,7 +1,5 @@
-// TODO: Fazer estrutura do projeto
-
-// TODO: Colocar a lista de samples aqui
-// TODO: O output deve ser feito na pasta ./output/lexers com a estrutura do arquivo de entrada
+// Nome: Charles Lelis Braga - Matrícula: 202035015
+// Nome: Gabriella Carvalho -- Matrícula: 202165047AC
 
 import java.io.FileReader;
 import java.io.File;

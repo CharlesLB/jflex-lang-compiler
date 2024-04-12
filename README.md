@@ -1,12 +1,17 @@
+// Nome: Charles Lelis Braga -- Matrícula: 202035015
+// Nome: Gabriella Carvalho -- Matrícula: 202165047AC
+
 # README
 
-## Para compilar
+## Para compilar utilizando o SHELL
 
-TODO: colocar um comando bonito aqui
+java -jar .\lib\jflex-full-1.8.2.jar .\src\Lexer\lang.flex
+
+javac -d out src\lexer\Lexer.java src\lexer\Token.java src\lexer\TOKEN_TYPE.java src\App.java ; java -cp out App
 
 ## TODO
 
-[ ] Colocar os comandos ali em cima
+[X] Colocar os comandos ali em cima
 
 ### Bugs
 
@@ -19,8 +24,4 @@ TODO: colocar um comando bonito aqui
 `ant compile`: Para compilar os arquivos Java.
 `ant run`: Para executar a aplicação.
 
-# Para compilar usando o SHELL
-java -jar .\lib\jflex-full-1.8.2.jar .\src\Lexer\lang.flex
-
-javac -d out src\lexer\Lexer.java src\lexer\Token.java src\lexer\TOKEN_TYPE.java src\App.java ; java -cp out App
 
