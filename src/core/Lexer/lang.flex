@@ -1,10 +1,10 @@
 // Nome: Charles Lelis Braga - Matrícula: 202035015
 // Nome: Gabriella Carvalho -- Matrícula: 202165047AC
 
-package src.lexer;
+package core.Lexer;
 
-import src.lexer.TOKEN_TYPE;
-import src.lexer.Token;
+import core.Lexer.TOKEN_TYPE;
+import core.Lexer.Token;
 
 %%
 
@@ -12,7 +12,7 @@ import src.lexer.Token;
 %line
 %column
 %public
-%class Lexer
+%class LexerProcessor
 %function nextToken
 %type Token
 

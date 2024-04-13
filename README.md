@@ -3,11 +3,23 @@
 
 # README
 
+## Para compilar usando o WINDOWS
+
+rode os comandos:
+
+```
+java -jar ./lib/jflex-full-1.8.2.jar ./src/core/Lexer/lang.flex
+```
+
+```
+javac -d out src/core/Lexer/Lexer.java src/core/Lexer/Token.java src/core/Lexer/TOKEN_TYPE.java src/core/Lexer/LexerProcessor.java  .\src\utils\SampleFileManager\SampleFileManager.java  src/App.java ; java -cp out App
+```
+
 ## Para compilar utilizando o SHELL
 
-java -jar ./lib/jflex-full-1.8.2.jar ./src/lexer/lang.flex
+java -jar ./lib/jflex-full-1.8.2.jar ./src/core/Lexer/lang.flex
 
-javac -d out src/lexer/Lexer.java src/lexer/Token.java src/lexer/TOKEN_TYPE.java src/App.java ; java -cp out App
+javac -d out src/core/Lexer/Lexer.java src/core/Lexer/Token.java src/core/Lexer/TOKEN_TYPE.java src/App.java ; java -cp out App
 
 ## TODO:
 
@@ -15,7 +27,7 @@ javac -d out src/lexer/Lexer.java src/lexer/Token.java src/lexer/TOKEN_TYPE.java
 [] Um identificador obrigatoriamente, começa com uma letra minúscula.
 [] Se começa com maiscula é nome de tipo
 [] 1.1 tem que ser float e não "Number DOT Number"
-[] literal caractere  ́é um  único caractere delimitado por aspas simples.
+[] literal caractere ́é um único caractere delimitado por aspas simples.
 [] Os caracteres especiais quebra-de-linha, tabulação, backspace e carriage return são definidos usando os caracteres de escape \n, \t, \b e \r, respectivamente. Para especificar um caractere \, é usado \\ e para a aspas simples o \’. Exemplos de literais caractere: ’a’, ’\n’, ’\t’ e ’\\”;
 [] O comentário de uma linha começa com --
 e se estende até a quebra de linha.
@@ -29,8 +41,7 @@ e se estende até a quebra de linha.
 [X] Ele está reclamando que o \ não é um caracter válido. Assim como um emoji, §, ° ¨¬ª também não é, mas eles devem ser válidos para string.(Resolvido com excelência)
 
 ## Para compilar usando o ANT
+
 `ant jflex`: Para gerar o analisador léxico com jflex.
 `ant compile`: Para compilar os arquivos Java.
 `ant run`: Para executar a aplicação.
-
-

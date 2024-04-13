@@ -1,5 +1,8 @@
 # Build
 build
-Lexer.java
+LexerProcessor.java
 *.java~
 *.class
+
+# IDE
+.idea/
