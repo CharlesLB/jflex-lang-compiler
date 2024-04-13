@@ -15,7 +15,6 @@ public enum TOKEN_TYPE {
   BTYPE,
   NEW,
   VOID,
-  STRING,
   STRUCT,
   TYPEDEF,
   SWITCH,
@@ -65,7 +64,6 @@ public enum TOKEN_TYPE {
   EXCLAMATION_MARK,
   DOUBLE_PIPE,
   PIPE,
-  STRING_VALUE,
 
   /* OPERATORS */
   PLUS_PLUS,
