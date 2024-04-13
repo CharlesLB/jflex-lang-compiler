@@ -1,0 +1,9 @@
+
+Int c = 1;
+Float b_abc = 0.1;
+{- DEVE IGNORAR
+ISSO TUDO -}
+
+Char 'a';
+{- ISSO TBM -}
+-- abc
