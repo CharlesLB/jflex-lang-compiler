@@ -47,11 +47,12 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
 NEW_LINE=\r|\n|\r\n
 WHITE_SPACE_CHAR=[\n\r\ \t\b]
 
-NEWLINE = \n
-TAB = \t
-BACKSPACE = \b
-CARRIAGE = \r
-// DOUBLE_BACKSLASH = \
+CHAR_NEWLINE = \\n
+CHAR_TAB = \\t
+CHAR_BACKSPACE = \\b
+CHAR_CARRIAGE = \\r
+CHAR_BACKSLASH = \\\\
+CHAR_QUOTE = \\\'
 
 %state COMMENT
 %state LINE_COMMENT
@@ -104,7 +105,9 @@ CARRIAGE = \r
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
+
     "'" { yybegin(CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+    
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
     "[" { return symbol(TOKEN_TYPE.LEFT_BRACKET); }
@@ -129,8 +132,13 @@ CARRIAGE = \r
 }
 
 <CHAR_SINGLE_QUOTE> {
+    {CHAR_NEWLINE} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    {CHAR_TAB} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    {CHAR_BACKSPACE} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    {CHAR_CARRIAGE} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    {CHAR_BACKSLASH} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    {CHAR_QUOTE} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
     {ALPHA} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
-    
 }
 
 <END_CHAR_SINGLE_QUOTE> {
