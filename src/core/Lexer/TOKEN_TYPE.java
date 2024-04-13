@@ -64,8 +64,4 @@ public enum TOKEN_TYPE {
   EXCLAMATION_MARK,
   DOUBLE_PIPE,
   PIPE,
-
-  /* OPERATORS */
-  PLUS_PLUS,
-  MINUS_MINUS,
 }
