@@ -32,7 +32,12 @@ public enum TOKEN_TYPE {
   TYPE,
   INT_VALUE,
   FLOAT_VALUE,
+
   NEWLINE,
+  TAB,
+  BACKSPACE,
+  CARRIAGE,
+
   ASSIGNMENT,
   EQ,
   NOT_EQ,
