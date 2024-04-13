@@ -1,13 +1,16 @@
-data Ponto {
-   x :: Float;
-   y :: Float;
+main () {
+  print fat(10)[0];
 }
 
-f(d :: Int ) : Int, Char{
-    return 0, '\n';
+fat (num :: Int) : Int {
+  if (num < 1)
+    return 1;
+  else
+    return num * fat (num-1) [0];
 }
 
-main(x :: Ponto){
-   print x.x;
-   z = f(0)[0] + 2;
+divmod (num :: Int, div :: Int) : Int, Int {
+  q = num / div;
+  r = num % div;
+  return q, r;
 }
