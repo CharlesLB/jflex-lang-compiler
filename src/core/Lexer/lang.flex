@@ -49,12 +49,10 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 IDENT_UPPERCASE = {ALPHA_UPPERCASE}({ALPHA}|:digit:|_)*
 IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
 
-
 %state COMMENT
 %state LINE_COMMENT
-%state STRING_SINGLE_QUOTE
-%state STRING_DOUBLE_QUOTE
-
+%state CHAR_SINGLE_QUOTE
+%state END_CHAR_SINGLE_QUOTE
 %%
 
 <YYINITIAL>{
@@ -74,7 +72,6 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
 
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
-    "string" { return symbol(TOKEN_TYPE.STRING); }
     "struct" { return symbol(TOKEN_TYPE.STRUCT); }
     "typedef" { return symbol(TOKEN_TYPE.TYPEDEF); }
     "switch" { return symbol(TOKEN_TYPE.SWITCH); }
@@ -102,8 +99,7 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
-    "'" { yybegin(STRING_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
-    "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
+    "'" { yybegin(CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
     "[" { return symbol(TOKEN_TYPE.LEFT_BRACKET); }
@@ -127,15 +123,12 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
     {WHITE_SPACE_CHAR} { }
 }
 
-<STRING_SINGLE_QUOTE> {
-    {ALPHA} { return symbol(TOKEN_TYPE.CHAR); }
-    {ALPHA}({ALPHA}|:digit:|_)* { return symbol(TOKEN_TYPE.STRING); }
-    "\'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
+<CHAR_SINGLE_QUOTE> {
+    {ALPHA} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
 }
 
-<STRING_DOUBLE_QUOTE> {
-    [^\"]+ { return symbol(TOKEN_TYPE.STRING); }
-    "\"" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
+<END_CHAR_SINGLE_QUOTE> {
+  "\'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
 }
 
 <COMMENT>{
