@@ -1,7 +1,6 @@
 // Nome: Charles Lelis Braga - Matrícula: 202035015
 // Nome: Gabriella Carvalho -- Matrícula: 202165047AC
 
-import java.io.FileReader;
 import java.io.File;
 
 import core.Lexer.Lexer;
