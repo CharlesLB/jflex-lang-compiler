@@ -30,8 +30,8 @@ public enum TOKEN_TYPE {
   CHAR,
   ID,
   TYPE,
-  INT_VALUE,
-  FLOAT_VALUE,
+  INT,
+  FLOAT,
 
   ASSIGNMENT,
   EQ,

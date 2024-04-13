@@ -39,8 +39,8 @@ ALPHA = [A-Za-z]
 ALPHA_UPPERCASE=[A-Z]
 ALPHA_LOWERCASE=[a-z]
 
-INT_VALUE= [:digit:] [:digit:]*  
-FLOAT_VALUE= [-+]?([:digit:]+ \. [:digit:]*)
+INT= [:digit:] [:digit:]*  
+FLOAT= [-+]?([:digit:]+ \. [:digit:]*)
 IDENT_UPPERCASE = {ALPHA_UPPERCASE}({ALPHA}|:digit:|_)*
 IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
 
@@ -89,8 +89,8 @@ CHAR_QUOTE = \\\'
 
     {IDENT_LOWERCASE} { return symbol(TOKEN_TYPE.ID, yytext()); }
     {IDENT_UPPERCASE} { return symbol(TOKEN_TYPE.TYPE, yytext()); }
-    {INT_VALUE} { return symbol(TOKEN_TYPE.INT_VALUE, yytext()); }
-    {FLOAT_VALUE} { return symbol(TOKEN_TYPE.FLOAT_VALUE, yytext()); }
+    {INT} { return symbol(TOKEN_TYPE.INT, yytext()); }
+    {FLOAT} { return symbol(TOKEN_TYPE.FLOAT, yytext()); }
 
     "--" { yybegin(LINE_COMMENT); }
     "{-" { yybegin(COMMENT); }
