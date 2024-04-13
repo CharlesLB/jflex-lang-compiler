@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class SampleFileManager {
   static String sampleFolder = "samples/sintatic/";
+  static Scanner scanner = new Scanner(System.in);
 
   public static File getSampleFile() throws Exception {
     File[] files = getFolders();
@@ -39,7 +40,6 @@ public class SampleFileManager {
       System.out.println((i + 1) + ". " + folders[i].getName());
     }
 
-    Scanner scanner = new Scanner(System.in);
     int choice = -1;
 
     while (choice < 1 || choice > folders.length) {
@@ -60,7 +60,6 @@ public class SampleFileManager {
       System.out.println((i + 1) + ". " + files[i].getName());
     }
 
-    Scanner scanner = new Scanner(System.in);
     int choice = -1;
 
     while (choice < 1 || choice > files.length) {
