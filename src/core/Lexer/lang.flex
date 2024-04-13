@@ -3,9 +3,6 @@
 
 package core.Lexer;
 
-import core.Lexer.TOKEN_TYPE;
-import core.Lexer.Token;
-
 %%
 
 %unicode
