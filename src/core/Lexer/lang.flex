@@ -41,21 +41,25 @@ import core.Lexer.Token;
 ALPHA = [A-Za-z]
 ALPHA_UPPERCASE=[A-Z]
 ALPHA_LOWERCASE=[a-z]
+
 INT_VALUE= [:digit:] [:digit:]*  
 FLOAT_VALUE= [-+]?([:digit:]+ \. [:digit:]*)
-
-NEWLINE=\r|\n|\r\n
-WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 IDENT_UPPERCASE = {ALPHA_UPPERCASE}({ALPHA}|:digit:|_)*
 IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
-INDET_CHAR = \' {ALPHA} \'
-INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
+
+NEW_LINE=\r|\n|\r\n
+WHITE_SPACE_CHAR=[\n\r\ \t\b]
+
+NEWLINE = \n
+TAB = \t
+BACKSPACE = \b
+CARRIAGE = \r
+// DOUBLE_BACKSLASH = \
 
 %state COMMENT
 %state LINE_COMMENT
-%state STRING_SINGLE_QUOTE
-%state STRING_DOUBLE_QUOTE
-
+%state CHAR_SINGLE_QUOTE
+%state END_CHAR_SINGLE_QUOTE
 %%
 
 <YYINITIAL>{
@@ -67,11 +71,8 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     "return" { return symbol(TOKEN_TYPE.RETURN); }
     "break" { return symbol(TOKEN_TYPE.BREAK); }
     "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
-    "Int" { return symbol(TOKEN_TYPE.INT); }
-    "Float" { return symbol(TOKEN_TYPE.FLOAT); }
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
-    "string" { return symbol(TOKEN_TYPE.STRING); }
     "struct" { return symbol(TOKEN_TYPE.STRUCT); }
     "typedef" { return symbol(TOKEN_TYPE.TYPEDEF); }
     "switch" { return symbol(TOKEN_TYPE.SWITCH); }
@@ -83,12 +84,19 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     "print" { return symbol(TOKEN_TYPE.PRINT); }
     "scan" { return symbol(TOKEN_TYPE.SCAN); }    
 
+    "Int" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Float" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Char" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Bool" { return symbol(TOKEN_TYPE.BTYPE); }
+
     {IDENT_LOWERCASE} { return symbol(TOKEN_TYPE.ID, yytext()); }
     {IDENT_UPPERCASE} { return symbol(TOKEN_TYPE.TYPE, yytext()); }
     {INT_VALUE} { return symbol(TOKEN_TYPE.INT_VALUE, yytext()); }
     {FLOAT_VALUE} { return symbol(TOKEN_TYPE.FLOAT_VALUE, yytext()); }
+
     "--" { yybegin(LINE_COMMENT); }
-    "/*" { yybegin(COMMENT); }
+    "{-" { yybegin(COMMENT); }
+    
     "=" { return symbol(TOKEN_TYPE.ASSIGNMENT); }
     "==" { return symbol(TOKEN_TYPE.EQ); }
     "!=" { return symbol(TOKEN_TYPE.NOT_EQ); }
@@ -99,9 +107,7 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     "," { return symbol(TOKEN_TYPE.COMMA); }
     "::" { return symbol(TOKEN_TYPE.DOUBLE_COLON); }
     ":" { return symbol(TOKEN_TYPE.COLON); }
-    {INDET_CHAR} { return symbol(TOKEN_TYPE.CHAR, yytext()); }
-    {INDET_STRING} { return symbol(TOKEN_TYPE.STRING, yytext()); }
-    "\"" { yybegin(STRING_DOUBLE_QUOTE); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
+    "'" { yybegin(CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
     "(" { return symbol(TOKEN_TYPE.LEFT_PAREN); }
     ")" { return symbol(TOKEN_TYPE.RIGHT_PAREN); }
     "[" { return symbol(TOKEN_TYPE.LEFT_BRACKET); }
@@ -125,18 +131,22 @@ INDET_STRING = \' {ALPHA}({ALPHA}|:digit:|_)* \'
     {WHITE_SPACE_CHAR} { }
 }
 
-<STRING_DOUBLE_QUOTE> {
-    [^\"]+ { return symbol(TOKEN_TYPE.STRING); }
-    "\"" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.DOUBLE_QUOTE); }
+<CHAR_SINGLE_QUOTE> {
+    {ALPHA} { yybegin(END_CHAR_SINGLE_QUOTE); return symbol(TOKEN_TYPE.CHAR); }
+    
+}
+
+<END_CHAR_SINGLE_QUOTE> {
+  "\'" { yybegin(YYINITIAL); return symbol(TOKEN_TYPE.SINGLE_QUOTE); }
 }
 
 <COMMENT>{
-   "*/"     { yybegin(YYINITIAL); } 
-   [^"*/"]  {                     }
+   "-}"     { yybegin(YYINITIAL); } 
+   [^"-}"]  {                     }
 }
 
 <LINE_COMMENT>{
-    {NEWLINE} { yybegin(YYINITIAL); }
+    {NEW_LINE} { yybegin(YYINITIAL); }
     [^\n\r] { }
 }
 

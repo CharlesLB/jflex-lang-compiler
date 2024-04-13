@@ -12,11 +12,9 @@ public enum TOKEN_TYPE {
   RETURN,
   BREAK,
   CONTINUE,
-  INT,
-  FLOAT,
+  BTYPE,
   NEW,
   VOID,
-  STRING,
   STRUCT,
   TYPEDEF,
   SWITCH,
@@ -34,7 +32,12 @@ public enum TOKEN_TYPE {
   TYPE,
   INT_VALUE,
   FLOAT_VALUE,
+
   NEWLINE,
+  TAB,
+  BACKSPACE,
+  CARRIAGE,
+
   ASSIGNMENT,
   EQ,
   NOT_EQ,
@@ -66,7 +69,6 @@ public enum TOKEN_TYPE {
   EXCLAMATION_MARK,
   DOUBLE_PIPE,
   PIPE,
-  STRING_VALUE,
 
   /* OPERATORS */
   PLUS_PLUS,
