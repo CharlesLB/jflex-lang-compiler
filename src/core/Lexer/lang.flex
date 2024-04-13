@@ -66,8 +66,12 @@ IDENT_LOWERCASE = {ALPHA_LOWERCASE}({ALPHA}|:digit:|_)*
     "return" { return symbol(TOKEN_TYPE.RETURN); }
     "break" { return symbol(TOKEN_TYPE.BREAK); }
     "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
-    "Int" { return symbol(TOKEN_TYPE.INT); }
-    "Float" { return symbol(TOKEN_TYPE.FLOAT); }
+
+    "Int" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Float" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Char" { return symbol(TOKEN_TYPE.BTYPE); }
+    "Bool" { return symbol(TOKEN_TYPE.BTYPE); }
+
     "new" { return symbol(TOKEN_TYPE.NEW); }
     "void" { return symbol(TOKEN_TYPE.VOID); }
     "string" { return symbol(TOKEN_TYPE.STRING); }
