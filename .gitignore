@@ -3,6 +3,7 @@ build
 LexerProcessor.java
 *.java~
 *.class
+/bin
 
 # IDE
 .idea/
