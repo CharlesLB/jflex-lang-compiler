@@ -37,17 +37,17 @@ public class SampleFileManager {
     System.out.println("Selecione um pasta:");
 
     for (int i = 0; i < folders.length; i++) {
-      System.out.println((i + 1) + ". " + folders[i].getName());
+      System.out.println((i) + ". " + folders[i].getName());
     }
 
     int choice = -1;
 
-    while (choice < 1 || choice > folders.length) {
+    while (choice < 0 || choice > folders.length - 1) {
       System.out.print("Digite o número do pasta para selecionar: ");
       choice = scanner.nextInt();
     }
 
-    File selectedFolder = folders[choice - 1];
+    File selectedFolder = folders[choice];
     System.out.println("Você selecionou: " + selectedFolder.getPath());
 
     return selectedFolder.getPath();
