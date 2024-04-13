@@ -1,0 +1,23 @@
+n() : Char{
+  return '\n';
+}
+
+b() : Char{
+  return '\b';
+}
+
+t() : Char{
+  return '\t';
+}
+
+r() : Char{
+  return '\r';
+}
+
+quote() : Char{
+  return ''';
+}
+
+backslash() : Char{
+  return '\\';
+}
