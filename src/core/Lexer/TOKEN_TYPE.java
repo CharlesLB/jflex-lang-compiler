@@ -12,7 +12,6 @@ public enum TOKEN_TYPE {
   RETURN,
   BREAK,
   CONTINUE,
-  BTYPE,
   NEW,
   VOID,
   STRUCT,
@@ -21,18 +20,19 @@ public enum TOKEN_TYPE {
   CASE,
   DEFAULT,
   NULL,
-  TRUE,
-  FALSE,
   PRINT,
   SCAN,
 
-  /* GENERAL */
+  /* VALUABLES */
+  BTYPE,
   CHAR,
   ID,
   TYPE,
   INT,
   FLOAT,
+  BOOL,
 
+  /* OPERATORS */
   ASSIGNMENT,
   EQ,
   NOT_EQ,
@@ -64,4 +64,5 @@ public enum TOKEN_TYPE {
   EXCLAMATION_MARK,
   DOUBLE_PIPE,
   PIPE,
+
 }

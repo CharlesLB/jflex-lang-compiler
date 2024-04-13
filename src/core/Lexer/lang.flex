@@ -77,8 +77,8 @@ CHAR_QUOTE = \\\'
     "case" { return symbol(TOKEN_TYPE.CASE); }
     "default" { return symbol(TOKEN_TYPE.DEFAULT); }
     "null" { return symbol(TOKEN_TYPE.NULL); }
-    "true" { return symbol(TOKEN_TYPE.TRUE); }
-    "false" { return symbol(TOKEN_TYPE.FALSE); }
+    "true" { return symbol(TOKEN_TYPE.BOOL); }
+    "false" { return symbol(TOKEN_TYPE.BOOL); }
     "print" { return symbol(TOKEN_TYPE.PRINT); }
     "scan" { return symbol(TOKEN_TYPE.SCAN); }    
 
