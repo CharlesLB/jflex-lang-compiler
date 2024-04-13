@@ -17,9 +17,9 @@ javac -d out src/core/Lexer/Lexer.java src/core/Lexer/Token.java src/core/Lexer/
 
 ## Para compilar utilizando o SHELL
 
-java -jar ./lib/jflex-full-1.8.2.jar ./src/core/Lexer/lang.flex
-
-javac -d out src/core/Lexer/Lexer.java src/core/Lexer/Token.java src/core/Lexer/TOKEN_TYPE.java src/App.java ; java -cp out App
+```
+./build.sh
+```
 
 ## TODO:
 
