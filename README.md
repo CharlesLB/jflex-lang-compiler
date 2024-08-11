@@ -27,13 +27,13 @@ javac -d bin src/core/Lexer/Lexer.java src/core/Lexer/Token.java src/core/Lexer/
 
 ## TODO:
 
-[X] Modificar o print de saída para que ele imprima o token e o lexema.
-[X] Um identificador obrigatoriamente, começa com uma letra minúscula.
-[X] Se começa com maiscula é nome de tipo
-[X] 1.1 tem que ser float e não "Number DOT Number"
-[X] literal caractere ́é um único caractere delimitado por aspas simples.
-[X] Os caracteres especiais quebra-de-linha, tabulação, backspace e carriage return são definidos usando os caracteres de escape \n, \t, \b e \r, respectivamente. 
-[X] Para especificar um caractere \, é usado \\ e para a aspas simples o \’. Exemplos de literais caractere: 'a', '\n', '\t' e '\\';
-[X] O comentário de uma linha começa com -- e se estende até a quebra de linha.
-[X] O comentário de múltiplas linhas começa com {- e se estende até os caracteres de fechamento do comentário, -}.
-[X] A linguagem não suporta comentários aninhados.
+- [X] Modificar o print de saída para que ele imprima o token e o lexema.
+- [X] Um identificador obrigatoriamente, começa com uma letra minúscula.
+- [X] Se começa com maiscula é nome de tipo
+- [X] 1.1 tem que ser float e não "Number DOT Number"
+- [X] Literal caractere ́é um único caractere delimitado por aspas simples.
+- [X] Os caracteres especiais quebra-de-linha, tabulação, backspace e carriage return são definidos usando os caracteres de escape \n, \t, \b e \r, respectivamente. 
+- [X] Para especificar um caractere \, é usado \\ e para a aspas simples o \’. Exemplos de literais caractere: 'a', '\n', '\t' e '\\';
+- [X] O comentário de uma linha começa com -- e se estende até a quebra de linha.
+- [X] O comentário de múltiplas linhas começa com {- e se estende até os caracteres de fechamento do comentário, -}.
+- [X] A linguagem não suporta comentários aninhados.
