@@ -321,7 +321,6 @@ O estado de comentário de linha lida com comentários que se estendem até o fi
 Qualquer caractere não reconhecido é tratado como um erro, lançando uma exceção com uma mensagem descritiva.
 
 ```java
-javaCopy code
 [^] { throw new RuntimeException("Illegal character <"+yytext()+">"); }
 
 ```
