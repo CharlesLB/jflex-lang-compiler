@@ -26,21 +26,12 @@ public class Token {
         Arrays.asList(
             TOKEN_TYPE.IF,
             TOKEN_TYPE.ELSE,
-            TOKEN_TYPE.WHILE,
-            TOKEN_TYPE.FOR,
             TOKEN_TYPE.RETURN,
-            TOKEN_TYPE.BREAK,
-            TOKEN_TYPE.CONTINUE,
             TOKEN_TYPE.NEW,
-            TOKEN_TYPE.VOID,
-            TOKEN_TYPE.STRUCT,
-            TOKEN_TYPE.TYPEDEF,
-            TOKEN_TYPE.SWITCH,
-            TOKEN_TYPE.CASE,
-            TOKEN_TYPE.DEFAULT,
             TOKEN_TYPE.NULL,
             TOKEN_TYPE.PRINT,
-            TOKEN_TYPE.SCAN));
+            TOKEN_TYPE.READ,
+            TOKEN_TYPE.ITERATE));
 
     ArrayList<TOKEN_TYPE> valuablesTypes = new ArrayList<TOKEN_TYPE>(
         Arrays.asList(
@@ -75,16 +66,10 @@ public class Token {
             TOKEN_TYPE.DOT,
             TOKEN_TYPE.MINUS,
             TOKEN_TYPE.DIVIDE,
-            TOKEN_TYPE.NOT_EQUAL,
             TOKEN_TYPE.LESS_THAN,
-            TOKEN_TYPE.LESS_THAN_OR_EQUAL,
             TOKEN_TYPE.GREATER_THAN,
-            TOKEN_TYPE.GREATER_THAN_OR_EQUAL,
             TOKEN_TYPE.DOUBLE_AMPERSAND,
-            TOKEN_TYPE.AMPERSAND,
-            TOKEN_TYPE.EXCLAMATION_MARK,
-            TOKEN_TYPE.DOUBLE_PIPE,
-            TOKEN_TYPE.PIPE));
+            TOKEN_TYPE.EXCLAMATION_MARK));
 
     if (reservedWordsTypes.contains(t)) {
       return t.toString();
