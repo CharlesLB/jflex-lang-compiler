@@ -7,11 +7,8 @@ import core.Lexer.Lexer;
 import utils.SampleFileManager.SampleFileManager;
 
 public class App {
-
   public static void main(String[] args) throws Exception {
     File selectedFile = SampleFileManager.getSampleFile();
     Lexer.process(selectedFile);
-
   }
-
 }

@@ -64,23 +64,14 @@ CHAR_QUOTE = \\\'
   /* RESERVED_WORDS */
     "if" { return symbol(TOKEN_TYPE.IF); }
     "else" { return symbol(TOKEN_TYPE.ELSE); }
-    "while" { return symbol(TOKEN_TYPE.WHILE); }
-    "for" { return symbol(TOKEN_TYPE.FOR); }
     "return" { return symbol(TOKEN_TYPE.RETURN); }
-    "break" { return symbol(TOKEN_TYPE.BREAK); }
-    "continue" { return symbol(TOKEN_TYPE.CONTINUE); }
     "new" { return symbol(TOKEN_TYPE.NEW); }
-    "void" { return symbol(TOKEN_TYPE.VOID); }
-    "struct" { return symbol(TOKEN_TYPE.STRUCT); }
-    "typedef" { return symbol(TOKEN_TYPE.TYPEDEF); }
-    "switch" { return symbol(TOKEN_TYPE.SWITCH); }
-    "case" { return symbol(TOKEN_TYPE.CASE); }
-    "default" { return symbol(TOKEN_TYPE.DEFAULT); }
+    "data" { return symbol(TOKEN_TYPE.DATA); }
     "null" { return symbol(TOKEN_TYPE.NULL); }
     "true" { return symbol(TOKEN_TYPE.BOOL); }
     "false" { return symbol(TOKEN_TYPE.BOOL); }
     "print" { return symbol(TOKEN_TYPE.PRINT); }
-    "scan" { return symbol(TOKEN_TYPE.SCAN); }    
+    "read" { return symbol(TOKEN_TYPE.READ); }    
 
     "Int" { return symbol(TOKEN_TYPE.BTYPE); }
     "Float" { return symbol(TOKEN_TYPE.BTYPE); }
@@ -117,16 +108,10 @@ CHAR_QUOTE = \\\'
     "." { return symbol(TOKEN_TYPE.DOT); }
     "-" { return symbol(TOKEN_TYPE.MINUS); }
     "/" { return symbol(TOKEN_TYPE.DIVIDE); }
-    "<>" { return symbol(TOKEN_TYPE.NOT_EQUAL); }
-    "<=" { return symbol(TOKEN_TYPE.LESS_THAN_OR_EQUAL); }
     "<" { return symbol(TOKEN_TYPE.LESS_THAN); }
-    ">=" { return symbol(TOKEN_TYPE.GREATER_THAN_OR_EQUAL); }
     ">" { return symbol(TOKEN_TYPE.GREATER_THAN); }
     "&&" { return symbol(TOKEN_TYPE.DOUBLE_AMPERSAND); }
-    "&" { return symbol(TOKEN_TYPE.AMPERSAND); }
     "!" { return symbol(TOKEN_TYPE.EXCLAMATION_MARK); }
-    "||" { return symbol(TOKEN_TYPE.DOUBLE_PIPE); }
-    "|" { return symbol(TOKEN_TYPE.PIPE); }
 
     {WHITE_SPACE_CHAR} { }
 }
